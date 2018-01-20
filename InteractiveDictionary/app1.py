@@ -29,14 +29,17 @@ def meaning_of_word(word):
     # Variable to hold proper nouns(Start with capital letter)
     proper_nouns = word[0] + word[1:]
 
-    # Checking if the word actually exists in the dictionary
+    # Checking for all upper case(usually required for acronyms)
+    word_upper_case = word.upper()
 
-    # Checking for proper nouns
-    if proper_nouns in data:
-        return data[proper_nouns]
-    # Checking after converting the word to all lower case
-    elif word_lower_case in data:
+    # Checking if the word actually exists in the dictionary
+    if word_lower_case in data:
         return data[word]
+    elif proper_nouns in data:
+        return data[proper_nouns]
+    # Checking for upper case
+    elif word_upper_case:
+        return data[word_upper_case]
     else:
         # Checking for non-existence and similarity of the word
         return check_for_similar_word(word)
