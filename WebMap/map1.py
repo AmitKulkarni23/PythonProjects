@@ -35,10 +35,25 @@ fg = folium.FeatureGroup(name=feature_group_name)
 fg.add_child(folium.Marker(location=lat_long_list, popup=popup_string, icon=folium.Icon(color=marker_color)))
 
 
+# Adding data from a json file
+# Creating the GeoJson object
+# This is used to display the polygons on the map
+
+
+fg.add_child(folium.GeoJson(data=open("world.json", "r", encoding="utf-8-sig").read()))
 
 # Adding the feature group to the map
 map.add_child(fg)
 
+# layer Control can be added to turn on features based on user choice
+# A layer control menu is displayed on the HTMl page
+# The user can choose to display or hide a layer
+
+
+# This command gives the user only 1 option to the user
+# turn all the features on or off.(because we have only 1 feature group)
+
+map.add_child(folium.LayerControl())
 
 # Saving the map
 map.save(map_name)
